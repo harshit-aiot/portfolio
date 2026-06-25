@@ -91,5 +91,5 @@ npx vercel --prod
 
 - **Harshit Bhargava** - *Data Analyst & IoT Developer*
 - **GitHub:** [@harshit-aiot](https://github.com/harshit-aiot)
-- **Email:** [harshit@iotdata.dev](mailto:harshit@iotdata.dev)
+- **Email:** [harshitbhargava439@gmail.com](mailto:harshitbhargava439@gmail.com)
 - **Location:** Bikaner, Rajasthan, India
