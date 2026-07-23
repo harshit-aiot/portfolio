@@ -28,19 +28,19 @@ export default function Contact() {
         </p>
       </div>
 
-      <div style={styles.contentGrid}>
+      <div className="responsive-contact-grid">
         {/* Contact info list */}
         <div style={styles.infoColumn}>
           <div style={styles.contactRow}>
             <span style={styles.label}>EMAIL</span>
-            <a href="mailto:harshitbhargava439@gmail.com" style={styles.value}>
+            <a href="mailto:harshitbhargava439@gmail.com" className="contact-row-value" style={styles.value}>
               harshitbhargava439@gmail.com
             </a>
           </div>
 
           <div style={styles.contactRow}>
             <span style={styles.label}>PHONE</span>
-            <a href="tel:+918209158578" style={styles.value}>
+            <a href="tel:+918209158578" className="contact-row-value" style={styles.value}>
               +91 82091 58578
             </a>
           </div>
@@ -59,6 +59,7 @@ export default function Contact() {
                 href="https://github.com/harshit-aiot" 
                 target="_blank" 
                 rel="noopener noreferrer" 
+                className="contact-social-link"
                 style={styles.socialLink}
               >
                 <Github size={20} /> <span>GITHUB</span>
@@ -67,6 +68,7 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/harshitbh7/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
+                className="contact-social-link"
                 style={styles.socialLink}
               >
                 <Linkedin size={20} /> <span>LINKEDIN</span>
@@ -277,28 +279,4 @@ const styles = {
   },
 };
 
-// Form hover focus animations
-if (typeof document !== 'undefined') {
-  const style = document.createElement('style');
-  style.textContent = `
-    input:focus, textarea:focus {
-      border-color: var(--accent-cyan) !important;
-      box-shadow: 0 0 12px rgba(0, 242, 254, 0.15);
-      background: rgba(5, 7, 12, 0.8) !important;
-    }
-    a[style*="value"]:hover {
-      color: var(--accent-cyan) !important;
-    }
-    a[style*="socialLink"]:hover {
-      color: var(--accent-cyan) !important;
-      transform: translateY(-2px);
-    }
-    @media (max-width: 900px) {
-      div[style*="contentGrid"] {
-        grid-template-columns: 1fr !important;
-        gap: 3rem !important;
-      }
-    }
-  `;
-  document.head.appendChild(style);
-}
+

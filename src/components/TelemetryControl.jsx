@@ -81,7 +81,7 @@ export default function TelemetryControl() {
   };
 
   return (
-    <div style={styles.container}>
+    <div className="telemetry-control-container" style={styles.container}>
       {/* Floating Toggle Pill */}
       {!isOpen && (
         <button onClick={() => setIsOpen(true)} style={styles.togglePill} className="glass-card">
@@ -93,7 +93,7 @@ export default function TelemetryControl() {
 
       {/* Expanded Dashboard Panel */}
       {isOpen && (
-        <div style={styles.panel} className="glass-card page-fade-in">
+        <div style={styles.panel} className="telemetry-control-panel glass-card page-fade-in">
           {/* Header */}
           <div style={styles.header}>
             <div style={styles.titleContainer}>
@@ -112,7 +112,7 @@ export default function TelemetryControl() {
           <div style={styles.controlsList}>
             <div style={styles.controlItem}>
               <div style={styles.controlHeader}>
-                <span style={styles.label}>Node Density (Count)</span>
+                <span style={styles.label}>Device Density (Count)</span>
                 <span style={{ ...styles.value, color: THEMES[config.theme].color1 }}>{config.particleCount}</span>
               </div>
               <input

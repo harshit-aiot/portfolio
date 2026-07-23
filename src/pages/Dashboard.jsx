@@ -204,7 +204,7 @@ LIMIT 5;`,
   return (
     <div className="container page-fade-in" style={styles.pageWrapper}>
       {/* Tab Selectors */}
-      <div style={styles.tabContainer}>
+      <div className="scrollable-tab-container">
         <button 
           onClick={() => setActiveTab('iot')}
           style={{
@@ -237,7 +237,7 @@ LIMIT 5;`,
               <span className="telemetry-text">Interactive Showcase // Telemetry Streams</span>
               <h2 style={styles.title}>LIVE TELEMETRY HUB</h2>
               <p style={styles.subtitle}>
-                Simulating live telemetry packets from an ESP32 node network in Bikaner, India.
+                Simulating live telemetry packets from an ESP32 device network in Bikaner, India.
               </p>
             </div>
 
@@ -258,7 +258,7 @@ LIMIT 5;`,
                 )}
               </button>
               <button className="btn-secondary" onClick={handleManualRefresh}>
-                <RefreshCw size={14} /> Poll Node
+                <RefreshCw size={14} /> Poll Device
               </button>
             </div>
           </div>
@@ -273,7 +273,7 @@ LIMIT 5;`,
                 </span>
               </div>
               <span className="telemetry-text" style={{ fontSize: '0.75rem', opacity: 0.6 }}>
-                Node: esp32-agri-01
+                Device: esp32-agri-01
               </span>
             </div>
 
@@ -303,7 +303,7 @@ LIMIT 5;`,
           </div>
 
           {/* Split Grid */}
-          <div style={styles.splitGrid}>
+          <div className="responsive-split-grid">
             {/* SVG Chart Card */}
             <div className="glass-card" style={styles.chartCard}>
               <div style={styles.cardHeader}>
@@ -342,7 +342,7 @@ LIMIT 5;`,
 
             {/* Actuator control */}
             <div className="glass-card" style={styles.controlCard}>
-              <span className="telemetry-text">Node Actuator Panel</span>
+              <span className="telemetry-text">Device Actuator Panel</span>
               <h3 style={styles.controlTitle}>PUMP SYSTEM</h3>
               <p style={styles.controlDesc}>
                 Deploy command packets via MQTT broker to trigger the water pump solenoid relay on your hardware setup.
@@ -414,7 +414,7 @@ LIMIT 5;`,
             </div>
           </div>
 
-          <div style={styles.splitGrid}>
+          <div className="responsive-split-grid">
             {/* Left side: Pandas pipeline simulator */}
             <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={styles.cardHeader}>
@@ -544,7 +544,7 @@ LIMIT 5;`,
               <span style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#05ffa1' }}>DBMS: MySQL 8.0</span>
             </div>
 
-            <div style={styles.sqlContainer}>
+            <div className="responsive-split-grid">
               {/* SQL Input Box */}
               <div style={styles.sqlEditor}>
                 <div style={styles.sqlLines}>

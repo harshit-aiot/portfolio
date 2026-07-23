@@ -1,12 +1,13 @@
 import React from 'react';
 import { ArrowUpRight, Cpu, Activity, BarChart2 } from 'lucide-react';
+import DecryptedText from '../components/DecryptedText';
 
 export default function Home({ setActivePage }) {
   // Mock data ticker stream
   const rawLogs = [
     "MQTT_PUB: topic='sensors/temp' payload={'val': 24.5, 'unit': 'C'}",
     "SQL_QUERY: SELECT avg(vibration) FROM telemetry GROUP BY machine_id",
-    "NODE_OK: id='esp32-agri-01' battery=94% rssi=-67dBm",
+    "DEVICE_OK: id='esp32-agri-01' battery=94% rssi=-67dBm",
     "API_200: GET /v1/telemetry/aggregate duration=18ms",
     "PIPELINE_FLOW: ingested 14,240 rows into BigQuery",
     "ALARM_CLEARED: high_temp machine_id=4"
@@ -19,7 +20,7 @@ export default function Home({ setActivePage }) {
         <span className="blink-dot"></span>
         <span className="telemetry-text">System Status: active</span>
         <span style={styles.divider}>|</span>
-        <span className="telemetry-text">Active Nodes: 1,482</span>
+        <span className="telemetry-text">Active Devices: 1,482</span>
         <span style={styles.divider}>|</span>
         <span className="telemetry-text">Ingestion Rate: 4.2K msg/s</span>
       </div>
@@ -27,14 +28,20 @@ export default function Home({ setActivePage }) {
       {/* Hero Headline */}
       <div style={styles.heroContent}>
         <h1 className="hero-huge-title">
-          <div style={{ fontSize: 'clamp(2rem, 6vw, 5.2rem)', whiteSpace: 'nowrap' }}>HARSHIT BHARGAVA</div>
-          <div style={{ fontSize: 'clamp(2rem, 7vw, 6.5rem)', color: 'var(--accent-green)' }}>DATA ANALYST</div>
-          <div style={{ fontSize: 'clamp(2rem, 7vw, 6.5rem)', color: '#00f2fe' }}>& IOT DEVELOPER</div>
+          <div style={{ fontSize: 'clamp(2rem, 6vw, 5.2rem)' }}>
+            <DecryptedText text="HARSHIT BHARGAVA" animateOn="hover" speed={25} />
+          </div>
+          <div style={{ fontSize: 'clamp(2rem, 7vw, 6.5rem)', color: 'var(--accent-green)' }}>
+            <DecryptedText text="DATA ANALYST" animateOn="view" speed={30} />
+          </div>
+          <div style={{ fontSize: 'clamp(2rem, 7vw, 6.5rem)', color: '#00f2fe' }}>
+            <DecryptedText text="& IOT DEVELOPER" animateOn="view" speed={35} />
+          </div>
         </h1>
 
         <p style={styles.subtext}>
           I bridge the gap between physical sensor networks and analytical cloud databases.
-          Designing robust MQTT telemetry streams, building resilient data pipelines,
+          Designing robust MQTT telemetry streams primarily with ESP32 and Arduino Uno, building resilient data pipelines,
           and building high-performance intelligence dashboards.
         </p>
 
@@ -62,7 +69,7 @@ export default function Home({ setActivePage }) {
         <div className="glass-card" style={styles.statCard}>
           <div style={styles.statHeader}>
             <Cpu size={20} style={{ color: '#05ffa1' }} />
-            <span className="telemetry-text telemetry-green">IoT Nodes deployed</span>
+            <span className="telemetry-text telemetry-green">Microcontrollers deployed</span>
           </div>
           <span className="telemetry-value">48+</span>
           <p style={styles.statDesc}>Microcontrollers, Raspberry Pi gateways & active MQTT publishers.</p>

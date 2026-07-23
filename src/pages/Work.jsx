@@ -77,12 +77,12 @@ export default function Work() {
         <span className="telemetry-text">Portfolio // Showcase</span>
         <h2 style={styles.title}>SELECTED WORK</h2>
         <p style={styles.subtitle}>
-          A curated selection of industrial analytics dashboards, embedded IoT nodes, and automation systems.
+          A curated selection of industrial analytics dashboards, embedded microcontroller devices, and automation systems.
         </p>
       </div>
 
       {/* Grid Layout */}
-      <div style={styles.grid}>
+      <div className="responsive-project-grid">
         {projects.map((project) => (
           <div 
             key={project.id} 
@@ -114,13 +114,13 @@ export default function Work() {
 
       {/* Detail Modal */}
       {selectedProject && (
-        <div style={styles.modalOverlay} onClick={() => setSelectedProject(null)}>
-          <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <div className="portfolio-modal-overlay" style={styles.modalOverlay} onClick={() => setSelectedProject(null)}>
+          <div className="portfolio-modal-content" style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button style={styles.closeBtn} onClick={() => setSelectedProject(null)}>
               <X size={20} />
             </button>
             
-            <div style={styles.modalLayout}>
+            <div className="responsive-modal-layout">
               <div style={styles.modalImageColumn}>
                 <img src={selectedProject.image} alt={selectedProject.title} style={styles.modalImage} />
               </div>

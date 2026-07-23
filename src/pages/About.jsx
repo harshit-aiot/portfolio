@@ -77,14 +77,14 @@ export default function About() {
         </div>
       </div>
 
-      <div style={styles.bioLayout}>
+      <div className="bio-layout">
         <div style={styles.bioTextColumn}>
           <p style={styles.bioLead}>
             I am a Data Analyst and IoT Developer currently pursuing my Bachelor of Computer Applications (BCA) at Lovely Professional University.
           </p>
           <p style={styles.bioParagraph}>
             My technical focus lies at the intersection of embedded hardware engineering and data science. 
-            I build physical micro-sensor systems using ESP32/Arduino, establish real-time telemetry pipelines via MQTT, 
+            I build physical micro-sensor systems utilizing ESP32 and Arduino Uno microcontrollers, establish real-time telemetry pipelines via MQTT, 
             and implement analytical workflows in Python and SQL. 
             I specialize in unlocking hidden patterns from sensor data stream pipelines to automate industrial and agricultural systems.
           </p>
@@ -119,7 +119,7 @@ export default function About() {
       </div>
 
       {/* Experience and Education Two-Column Layout */}
-      <div style={styles.twoColumnSection}>
+      <div className="responsive-two-column">
         {/* Experience Column */}
         <div style={styles.column}>
           <h3 style={styles.subheading}>
@@ -378,19 +378,4 @@ const styles = {
   },
 };
 
-// Responsiveness adjustments using media queries in style element
-if (typeof document !== 'undefined') {
-  const style = document.createElement('style');
-  style.textContent = `
-    @media (max-width: 900px) {
-      div[style*="bioLayout"] {
-        grid-template-columns: 1fr !important;
-      }
-      div[style*="twoColumnSection"] {
-        grid-template-columns: 1fr !important;
-        gap: 3rem !important;
-      }
-    }
-  `;
-  document.head.appendChild(style);
-}
+
