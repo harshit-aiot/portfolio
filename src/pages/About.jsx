@@ -127,10 +127,10 @@ export default function About() {
       <div className="bio-layout" style={styles.bioLayout}>
         <div style={styles.bioTextColumn}>
           <p style={styles.bioLead}>
-            I am an IoT Developer and Data Analyst pursuing my BCA in AI & Machine Learning at Lovely Professional University.
+            Bridging the physical and analytical worlds — IoT developer and Data Analyst advancing my BCA in AI & Machine Learning at Lovely Professional University.
           </p>
           <p style={styles.bioParagraph}>
-            Unlike developers who solely work in software or solely in hardware, my passion sits squarely at the interface where 
+            Unlike developers who solely specialize in pure software or isolated hardware, my focus is at the direct interface where 
             <strong> physical sensor signals become actionable data intelligence</strong>.
           </p>
           <p style={styles.bioParagraph}>

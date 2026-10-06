@@ -258,6 +258,35 @@ a {
   font-weight: 700;
 }
 
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.52rem;
+  border-radius: 6px;
+  font-weight: 650;
+  font-size: 0.92em;
+  transition: all 0.2s ease;
+  margin: 0 0.15rem;
+  vertical-align: baseline;
+}
+
+.tech-tag.tech-hardware {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.tech-tag.tech-data {
+  background: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+  border: 1px solid rgba(79, 70, 229, 0.25);
+}
+
+.tech-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
 .telemetry-green {
   color: var(--accent-emerald);
 }

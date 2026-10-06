@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Cpu, BarChart2, Github, Layers, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, Cpu, BarChart2, Github, Layers, ChevronRight, GraduationCap } from 'lucide-react';
 
 // Preview image imports
 import churnOverviewImg from '../assets/projects/churn_overview.png';
@@ -50,12 +50,30 @@ export default function Home({ setActivePage }) {
           IoT Developer & Data Analytics Engineer
         </p>
 
-        <p style={styles.heroBio}>
-          I'm a developer pursuing my BCA in AI & Machine Learning at Lovely Professional University.
-          I love bridging the physical and analytical worlds — designing microcontroller hardware with 
-          <strong> ESP32</strong> and <strong>Arduino</strong>, and turning large datasets into clear, actionable decision engines 
-          using <strong>Python</strong>, <strong>SQL</strong>, and <strong>Power BI</strong>.
-        </p>
+        <div style={styles.heroBioWrapper}>
+          <p style={styles.heroLead}>
+            Bridging the physical and analytical worlds — designing intelligent IoT hardware and turning complex datasets into clear, high-impact decision systems.
+          </p>
+
+          <p style={styles.heroBio}>
+            Specializing in <strong>AI & Machine Learning</strong> at <strong>Lovely Professional University</strong>, I architect embedded microcontroller systems with <span className="tech-tag tech-hardware">ESP32</span> and <span className="tech-tag tech-hardware">Arduino</span>, alongside end-to-end data analytics and predictive models built with <span className="tech-tag tech-data">Python</span>, <span className="tech-tag tech-data">SQL</span>, and <span className="tech-tag tech-data">Power BI</span>.
+          </p>
+
+          <div style={styles.bioHighlights}>
+            <div style={styles.highlightBadge}>
+              <GraduationCap size={15} style={{ color: '#4f46e5' }} />
+              <span>BCA (AI & ML) · Lovely Professional University</span>
+            </div>
+            <div style={styles.highlightBadge}>
+              <Cpu size={15} style={{ color: '#0284c7' }} />
+              <span>Embedded Hardware & Edge Robotics</span>
+            </div>
+            <div style={styles.highlightBadge}>
+              <BarChart2 size={15} style={{ color: '#059669' }} />
+              <span>Predictive ML & Enterprise BI</span>
+            </div>
+          </div>
+        </div>
 
         {/* Clean Call To Action Buttons */}
         <div style={styles.ctaGroup}>
@@ -278,12 +296,42 @@ const styles = {
     marginBottom: '1.5rem',
     letterSpacing: '-0.01em',
   },
-  heroBio: {
-    fontSize: 'clamp(1.05rem, 1.7vw, 1.25rem)',
-    color: '#475569',
-    lineHeight: '1.65',
+  heroBioWrapper: {
+    maxWidth: '780px',
     marginBottom: '2.5rem',
-    maxWidth: '740px',
+  },
+  heroLead: {
+    fontSize: 'clamp(1.15rem, 2vw, 1.35rem)',
+    fontWeight: '600',
+    color: '#1e293b',
+    lineHeight: '1.55',
+    marginBottom: '0.9rem',
+    letterSpacing: '-0.01em',
+  },
+  heroBio: {
+    fontSize: 'clamp(0.98rem, 1.5vw, 1.1rem)',
+    color: '#475569',
+    lineHeight: '1.7',
+    marginBottom: '1.4rem',
+  },
+  bioHighlights: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '0.6rem',
+    alignItems: 'center',
+  },
+  highlightBadge: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.45rem',
+    padding: '0.42rem 0.85rem',
+    borderRadius: '100px',
+    background: 'rgba(255, 255, 255, 0.92)',
+    border: '1px solid rgba(226, 232, 240, 0.95)',
+    fontSize: '0.82rem',
+    fontWeight: '600',
+    color: '#334155',
+    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
   },
   ctaGroup: {
     display: 'flex',
