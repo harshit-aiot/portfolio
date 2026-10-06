@@ -1,25 +1,28 @@
-/* --- Design System & CSS Reset --- */
+/* --- Bright, Multi-Color Modern Developer Theme --- */
 :root {
-  --bg-primary: #05070c;
-  --bg-secondary: #0c111d;
-  --bg-tertiary: #131a2b;
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
+  --bg-primary: #f8fafc;
+  --bg-secondary: rgba(255, 255, 255, 0.85);
+  --bg-card: rgba(255, 255, 255, 0.75);
   
-  --accent-cyan: #00f2fe;
-  --accent-cyan-glow: rgba(0, 242, 254, 0.15);
-  --accent-green: #05ffa1;
-  --accent-green-glow: rgba(5, 255, 161, 0.15);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
   
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(0, 242, 254, 0.05);
+  --accent-indigo: #4f46e5;
+  --accent-blue: #2563eb;
+  --accent-cyan: #0284c7;
+  --accent-emerald: #059669;
+  --accent-rose: #e11d48;
+  --accent-amber: #d97706;
+  --accent-purple: #7c3aed;
+  
+  --border-glass: rgba(255, 255, 255, 0.8);
+  --border-subtle: rgba(148, 163, 184, 0.2);
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-hover: 0 20px 40px -10px rgba(79, 70, 229, 0.12), 0 6px 12px -2px rgba(0, 0, 0, 0.04);
   
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  
-  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: all 0.2s ease;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 * {
@@ -39,57 +42,140 @@ html, body {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-tertiary);
-  border-radius: 3px;
+  background: #cbd5e1;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-cyan);
+  background: #94a3b8;
 }
 
-/* --- Layouts & Typography --- */
+/* Typography Defaults */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--text-primary);
 }
 
 p {
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
   font-size: 1rem;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: var(--transition-fast);
+  transition: all 0.2s ease;
 }
 
-/* Monospace telemetry styles */
-.telemetry-text {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-  color: var(--accent-cyan);
-  text-transform: uppercase;
+/* Dynamic Multi-Color Bright Background Aurora Canvas */
+.ambient-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  background: #f8fafc;
 }
 
-.telemetry-green {
-  color: var(--accent-green);
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  animation: auroraFloat 18s ease-in-out infinite alternate;
 }
 
-/* --- Layout Classes --- */
+.blob-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #818cf8 0%, #6366f1 100%);
+  top: -80px;
+  left: -80px;
+  animation-duration: 16s;
+}
+
+.blob-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #f472b6 0%, #fb7185 100%);
+  top: 25%;
+  right: -120px;
+  animation-duration: 22s;
+  animation-delay: -4s;
+}
+
+.blob-3 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, #38bdf8 0%, #06b6d4 100%);
+  bottom: 10%;
+  left: 10%;
+  animation-duration: 20s;
+  animation-delay: -8s;
+}
+
+.blob-4 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, #fbbf24 0%, #f59e0b 100%);
+  bottom: -100px;
+  right: 15%;
+  animation-duration: 24s;
+  animation-delay: -12s;
+}
+
+.blob-5 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, #34d399 0%, #10b981 100%);
+  top: 50%;
+  left: 35%;
+  animation-duration: 18s;
+  animation-delay: -6s;
+}
+
+@keyframes auroraFloat {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(60px, 40px) scale(1.12);
+  }
+  100% {
+    transform: translate(-40px, 70px) scale(0.92);
+  }
+}
+
+/* Subtle background grain overlay for editorial finish */
+.bg-subtle-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background-image: radial-gradient(rgba(100, 116, 139, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Layout Container */
 .container {
-  max-width: 1400px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.75rem;
 }
 
 @media (max-width: 768px) {
@@ -98,531 +184,183 @@ a {
   }
 }
 
-/* --- Animations --- */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 15px var(--accent-cyan-glow);
-    border-color: rgba(0, 242, 254, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(0, 242, 254, 0.3);
-    border-color: rgba(0, 242, 254, 0.6);
-  }
+/* Human Button Styles */
+.btn-human-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.28);
 }
 
-@keyframes gridFlow {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 40px;
-  }
+.btn-human-primary:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.38);
 }
 
-@keyframes borderDraw {
-  0% {
-    width: 0;
-    height: 0;
-  }
-  50% {
-    width: 100%;
-    height: 0;
-  }
-  100% {
-    width: 100%;
-    height: 100%;
-  }
+.btn-human-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 0.85rem 1.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+.btn-human-secondary:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
+/* Modern Bright Frosted Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Clean Telemetry text tag */
+.telemetry-text {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--accent-indigo);
+  font-weight: 700;
+}
+
+.telemetry-green {
+  color: var(--accent-emerald);
+}
+
+/* Blink Dot */
 .blink-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--accent-green);
-  box-shadow: 0 0 8px var(--accent-green);
+  background-color: var(--accent-emerald);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
   display: inline-block;
-  animation: blink 2s infinite ease-in-out;
 }
 
-/* --- Common Components & UI Elements --- */
-
-/* Glass Cards */
-.glass-card {
-  background: rgba(12, 17, 29, 0.7);
-  border: 1px solid var(--border-color);
-  backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 2rem;
-  transition: var(--transition-smooth);
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 242, 254, 0.25);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-cyan-glow);
-}
-
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-
-.glass-card:hover::before {
-  transform: translateX(100%);
-}
-
-/* Large Heading styles matching Saurabh3D */
-.hero-huge-title {
-  font-size: clamp(3rem, 8vw, 7.5rem);
-  text-transform: uppercase;
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  color: var(--text-primary);
-}
-
-.stroke-title {
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--text-primary);
-}
-
-/* Button UI */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--text-primary);
-  padding: 0.85rem 2rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--text-primary);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: -1;
-}
-
-.btn-primary:hover {
-  color: var(--bg-primary);
-}
-
-.btn-primary:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
-  padding: 0.85rem 2rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-primary);
-  border-color: var(--text-secondary);
-}
-
-/* IoT Matrix Grid Background */
-.iot-grid-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.007) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: -2;
-  animation: gridFlow 60s linear infinite;
-  opacity: 0.8;
-}
-
-.iot-radial-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.02) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: -2;
-}
-
-/* Custom Nav Overlay styling */
-.nav-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: var(--bg-primary);
-  z-index: 99;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 6rem 2rem 3rem 2rem;
-  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
-  transform: translateY(-100%);
-  overflow-y: auto;
-}
-
-.nav-overlay.open {
-  transform: translateY(0);
-}
-
-.nav-overlay-links {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.nav-overlay-link {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  text-transform: uppercase;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  color: var(--text-muted);
-  transition: var(--transition-smooth);
-  width: fit-content;
-}
-
-.nav-overlay-link:hover {
-  color: var(--text-primary);
-  transform: translateX(20px);
-}
-
-.nav-overlay-link.active {
-  color: var(--accent-cyan);
-}
-
-/* Telemetry Grid for IoT Dashboard */
-.telemetry-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-/* Telemetry Mini Card */
-.telemetry-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  position: relative;
-}
-
-.telemetry-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--accent-cyan);
-  border-radius: 8px 0 0 8px;
-  transform: scaleY(0);
-  transition: var(--transition-smooth);
-}
-
-.telemetry-card.active::after {
-  transform: scaleY(1);
-}
-
-.telemetry-card.active-green::after {
-  background: var(--accent-green);
-  transform: scaleY(1);
-}
-
-.telemetry-value {
-  font-family: var(--font-mono);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.telemetry-label {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* SVG Chart styles */
-.svg-chart-path {
-  fill: none;
-  stroke: url(#cyanGrad);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawChart 2.5s ease-out forwards;
-}
-
-@keyframes drawChart {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.chart-grid-line {
-  stroke: rgba(255, 255, 255, 0.03);
-  stroke-width: 1;
-}
-
-.chart-axis-line {
-  stroke: rgba(255, 255, 255, 0.1);
-  stroke-width: 1;
-}
-
-/* Page wrapper animations */
+/* Page fade-in */
 .page-fade-in {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* --- ShinyText Animation --- */
-@keyframes shine {
-  0% {
-    background-position: 100%;
-  }
-  100% {
-    background-position: -100%;
-  }
-}
-
-.animate-shine {
-  animation: shine 5s linear infinite;
-}
-
-/* --- Responsive Utilities & Layout Classes --- */
-
-/* Scrollable tabs for mobile viewports */
-.scrollable-tab-container {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  white-space: nowrap;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 2.5rem;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Hide standard scrollbar on Firefox */
-}
-
-.scrollable-tab-container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar on Chrome, Safari, Opera */
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive grid for portfolio show case */
 .responsive-project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
 }
 
-/* Responsive layouts that stack on mobile/tablet */
+/* Bio layout */
 .bio-layout {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1.3fr 1fr;
   gap: 3rem;
   margin-bottom: 4rem;
-}
-
-.responsive-split-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 
 .responsive-two-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 3.5rem;
   margin-bottom: 4rem;
 }
 
 .responsive-contact-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3.5rem;
   align-items: start;
   margin-bottom: 4rem;
 }
 
-.responsive-modal-layout {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 2.5rem;
-  margin-top: 1rem;
-}
-
-/* --- Media Queries --- */
-
-@media (max-width: 1024px) {
-  .responsive-two-column {
-    gap: 2.5rem;
-  }
-  .responsive-contact-grid {
-    gap: 2.5rem;
-  }
-}
-
+/* Media Queries */
 @media (max-width: 900px) {
   .bio-layout {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
-
-  .responsive-split-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .responsive-two-column {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
-  
   .responsive-contact-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  .responsive-modal-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  /* Smaller page wrapper padding top for mobile */
-  div[style*="pageWrapper"],
-  main > div {
-    padding-top: 100px !important;
+  div[style*="desktopLinks"],
+  div[style*="rightActions"] {
+    display: none !important;
   }
-  
-  /* Reduced headings clamp */
-  .hero-huge-title {
-    font-size: clamp(2.2rem, 8vw, 4.5rem) !important;
-  }
-  
-  /* Adjust modal overlay padding */
-  div[style*="modalOverlay"] {
-    padding: 1rem !important;
-  }
-  
-  /* Adjust modal content padding */
-  div[style*="modalContent"] {
-    padding: 1.5rem !important;
+  button[style*="mobileBurgerBtn"] {
+    display: block !important;
   }
 }
 
 @media (max-width: 480px) {
-  /* Mobile padding and gaps */
-  header {
-    padding: 0 1.25rem !important;
-  }
-  
   .responsive-project-grid {
     grid-template-columns: 1fr;
   }
-  
-  /* Prevent text items in horizontal marquee or listings from overflowing */
-  .tickerItem {
-    font-size: 0.72rem !important;
-  }
 }
 
-/* Contact page specific styles */
+/* Form Inputs */
 input:focus, textarea:focus {
-  border-color: var(--accent-cyan) !important;
-  box-shadow: 0 0 12px rgba(0, 242, 254, 0.15);
-  background: rgba(5, 7, 12, 0.8) !important;
+  border-color: var(--accent-indigo) !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+  background: #ffffff !important;
 }
 
 .contact-row-value:hover {
-  color: var(--accent-cyan) !important;
+  color: var(--accent-indigo) !important;
 }
 
 .contact-social-link {
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .contact-social-link:hover {
-  color: var(--accent-cyan) !important;
-  transform: translateY(-2px);
-}
-
-/* Telemetry control tuner responsive adjustments */
-@media (max-width: 480px) {
-  .telemetry-control-container {
-    right: 12px !important;
-    bottom: 12px !important;
-    left: 12px !important;
-  }
-  
-  .telemetry-control-panel {
-    width: 100% !important;
-    max-width: none !important;
-  }
+  color: var(--accent-indigo) !important;
+  border-color: var(--accent-indigo) !important;
+  background: rgba(79, 70, 229, 0.05) !important;
 }

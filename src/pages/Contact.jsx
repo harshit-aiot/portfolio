@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Send, Github, Linkedin, CheckCircle2, ArrowUpRight } from 'lucide-react';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -9,7 +9,10 @@ export default function Contact() {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
     
-    // Simulate API delivery
+    // Create mailto link or simulate delivery
+    const mailtoLink = `mailto:harshitbhargava439@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(form.message + '\n\nFrom: ' + form.email)}`;
+    window.location.href = mailtoLink;
+
     setSubmitted(true);
     setTimeout(() => {
       setForm({ name: '', email: '', message: '' });
@@ -21,39 +24,39 @@ export default function Contact() {
     <div className="container page-fade-in" style={styles.pageWrapper}>
       {/* Header */}
       <div style={styles.header}>
-        <span className="telemetry-text">Contact // Establish Link</span>
-        <h2 style={styles.title}>GET IN TOUCH</h2>
+        <span style={styles.kicker}>CONTACT</span>
+        <h2 style={styles.title}>Let's Connect</h2>
         <p style={styles.subtitle}>
-          Have an IoT project, data pipeline, or analysis requirement? Open a port and establish a connection.
+          Have an IoT hardware project, data analytics opportunity, or internship to discuss? Reach out directly via email, phone, or LinkedIn.
         </p>
       </div>
 
-      <div className="responsive-contact-grid">
+      <div className="responsive-contact-grid" style={styles.contentGrid}>
         {/* Contact info list */}
         <div style={styles.infoColumn}>
           <div style={styles.contactRow}>
-            <span style={styles.label}>EMAIL</span>
+            <span style={styles.label}>DIRECT EMAIL</span>
             <a href="mailto:harshitbhargava439@gmail.com" className="contact-row-value" style={styles.value}>
               harshitbhargava439@gmail.com
             </a>
           </div>
 
           <div style={styles.contactRow}>
-            <span style={styles.label}>PHONE</span>
+            <span style={styles.label}>DIRECT PHONE</span>
             <a href="tel:+918209158578" className="contact-row-value" style={styles.value}>
               +91 82091 58578
             </a>
           </div>
 
           <div style={styles.contactRow}>
-            <span style={styles.label}>LOCATION</span>
-            <span style={styles.value}>
-              Bikaner, Rajasthan, India
+            <span style={styles.label}>LOCATIONS</span>
+            <span style={styles.valueLocation}>
+              Bikaner, Rajasthan · LPU, Punjab, India
             </span>
           </div>
 
           <div style={styles.contactRow}>
-            <span style={styles.label}>SOCIALS</span>
+            <span style={styles.label}>PROFILES</span>
             <div style={styles.socialGroup}>
               <a 
                 href="https://github.com/harshit-aiot" 
@@ -62,7 +65,8 @@ export default function Contact() {
                 className="contact-social-link"
                 style={styles.socialLink}
               >
-                <Github size={20} /> <span>GITHUB</span>
+                <Github size={18} /> <span>GitHub (@harshit-aiot)</span>
+                <ArrowUpRight size={14} />
               </a>
               <a 
                 href="https://www.linkedin.com/in/harshitbh7/" 
@@ -71,7 +75,8 @@ export default function Contact() {
                 className="contact-social-link"
                 style={styles.socialLink}
               >
-                <Linkedin size={20} /> <span>LINKEDIN</span>
+                <Linkedin size={18} /> <span>LinkedIn (harshitbh7)</span>
+                <ArrowUpRight size={14} />
               </a>
             </div>
           </div>
@@ -79,22 +84,22 @@ export default function Contact() {
 
         {/* Custom Form Card */}
         <div className="glass-card" style={styles.formCard}>
-          <span className="telemetry-text" style={{ marginBottom: '1.5rem', display: 'block' }}>
-            Transmission Form
+          <span style={styles.formTitle}>
+            Send a Direct Note
           </span>
 
           {submitted ? (
             <div style={styles.successWrapper}>
-              <span className="blink-dot" style={{ width: '12px', height: '12px' }}></span>
-              <h4 style={styles.successTitle}>TRANSMISSION SUCCESSFUL</h4>
+              <CheckCircle2 size={36} style={{ color: '#10b981' }} />
+              <h4 style={styles.successTitle}>Email Prepared</h4>
               <p style={styles.successText}>
-                Your message has been converted to an IP payload and ingested successfully. I will respond shortly.
+                Your email client has been opened with your message. You can also email me directly at <strong>harshitbhargava439@gmail.com</strong>.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={styles.form}>
               <div style={styles.inputGroup}>
-                <label style={styles.inputLabel}>IDENTIFIER / NAME</label>
+                <label style={styles.inputLabel}>YOUR NAME</label>
                 <input 
                   type="text" 
                   value={form.name}
@@ -106,41 +111,34 @@ export default function Contact() {
               </div>
 
               <div style={styles.inputGroup}>
-                <label style={styles.inputLabel}>RETURN ADDRESS / EMAIL</label>
+                <label style={styles.inputLabel}>YOUR EMAIL ADDRESS</label>
                 <input 
                   type="email" 
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  placeholder="e.g. john@domain.com"
+                  placeholder="e.g. john@example.com"
                   style={styles.input} 
                   required
                 />
               </div>
 
               <div style={styles.inputGroup}>
-                <label style={styles.inputLabel}>MESSAGE / LOG DATA</label>
+                <label style={styles.inputLabel}>MESSAGE / PROJECT INQUIRY</label>
                 <textarea 
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Type your message here..."
-                  style={{ ...styles.input, height: '120px', resize: 'none' }} 
+                  placeholder="Tell me about your project, team, or opportunity..."
+                  style={{ ...styles.input, height: '130px', resize: 'vertical' }} 
                   required
                 />
               </div>
 
-              <button type="submit" className="btn-primary" style={{ marginTop: '1rem', width: '100%', justifyContent: 'center' }}>
-                Transmit Payload <Send size={16} />
+              <button type="submit" className="btn-human-primary" style={{ marginTop: '0.5rem', width: '100%', justifyContent: 'center' }}>
+                Send Message <Send size={16} />
               </button>
             </form>
           )}
         </div>
-      </div>
-
-      {/* Large aesthetic footer text */}
-      <div style={styles.hugeFooter}>
-        <div className="stroke-title">CONNECT</div>
-        <div style={{ color: '#00f2fe' }}>INGEST DATA</div>
-        <div className="stroke-title">ANALYZE FUTURE</div>
       </div>
     </div>
   );
@@ -159,70 +157,106 @@ const styles = {
     marginBottom: '3rem',
   },
   title: {
-    fontSize: 'clamp(2rem, 5vw, 4rem)',
+    fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)',
     letterSpacing: '-0.02em',
     marginBottom: '1rem',
+    color: '#0f172a',
   },
   subtitle: {
-    maxWidth: '600px',
-    color: 'var(--text-secondary)',
+    maxWidth: '650px',
+    color: '#475569',
+    fontSize: '1.05rem',
+    lineHeight: 1.6,
   },
   contentGrid: {
     display: 'grid',
-    gridTemplateColumns: '1.2fr 1fr',
-    gap: '4rem',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+    gap: '3.5rem',
     alignItems: 'start',
     marginBottom: '4rem',
   },
   infoColumn: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '2.5rem',
-    borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+    gap: '2rem',
+    borderTop: '1px solid rgba(226, 232, 240, 0.8)',
   },
   contactRow: {
     display: 'flex',
     flexDirection: 'column',
     gap: '0.5rem',
-    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-    paddingBottom: '2rem',
+    borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
+    paddingBottom: '1.5rem',
     paddingTop: '1rem',
   },
   label: {
     fontFamily: "'JetBrains Mono', monospace",
-    fontSize: '0.8rem',
+    fontSize: '0.78rem',
     letterSpacing: '0.1em',
-    color: 'var(--text-muted)',
+    color: '#64748b',
+    fontWeight: '600',
   },
   value: {
-    fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
-    color: 'var(--text-primary)',
+    fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+    color: '#0f172a',
     fontWeight: '700',
     wordBreak: 'break-all',
     transition: 'color 0.2s',
   },
+  valueLocation: {
+    fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+    color: '#0f172a',
+    fontWeight: '600',
+  },
   socialGroup: {
     display: 'flex',
-    gap: '2rem',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
+    gap: '0.85rem',
     marginTop: '0.5rem',
   },
   socialLink: {
-    display: 'flex',
+    display: 'inline-flex',
     alignItems: 'center',
-    gap: '0.5rem',
+    gap: '0.6rem',
     fontFamily: "'JetBrains Mono', monospace",
-    fontSize: '1rem',
+    fontSize: '0.9rem',
     fontWeight: '600',
-    color: 'var(--text-primary)',
+    color: '#0f172a',
+    padding: '0.55rem 0.9rem',
+    borderRadius: '10px',
+    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+    border: '1px solid rgba(255, 255, 255, 0.95)',
+    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
+    width: 'fit-content',
+    transition: 'all 0.2s ease',
+  },
+  kicker: {
+    fontSize: '0.8rem',
+    fontWeight: '700',
+    color: '#4f46e5',
+    letterSpacing: '0.1em',
+    display: 'block',
+    marginBottom: '0.4rem',
+  },
+  formTitle: {
+    fontSize: '1.2rem',
+    fontWeight: '800',
+    color: '#0f172a',
+    marginBottom: '1.5rem',
+    display: 'block',
   },
   formCard: {
     padding: '2.5rem',
+    borderRadius: '20px',
+    background: 'rgba(255, 255, 255, 0.85)',
+    border: '1px solid rgba(255, 255, 255, 0.95)',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+    backdropFilter: 'blur(16px)',
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '1.5rem',
+    gap: '1.4rem',
   },
   inputGroup: {
     display: 'flex',
@@ -230,22 +264,23 @@ const styles = {
     gap: '0.5rem',
   },
   inputLabel: {
-    fontFamily: "'JetBrains Mono', monospace",
-    fontSize: '0.75rem',
-    color: 'var(--accent-cyan)',
-    letterSpacing: '0.05em',
+    fontSize: '0.78rem',
+    fontWeight: '700',
+    color: '#475569',
+    letterSpacing: '0.04em',
   },
   input: {
     width: '100%',
     padding: '0.85rem 1.2rem',
-    background: 'rgba(5, 7, 12, 0.6)',
-    border: '1px solid rgba(255, 255, 255, 0.08)',
-    borderRadius: '6px',
-    color: 'var(--text-primary)',
+    background: '#ffffff',
+    border: '1px solid #cbd5e1',
+    borderRadius: '10px',
+    color: '#0f172a',
     fontFamily: "'Inter', sans-serif",
     fontSize: '0.95rem',
-    transition: 'all 0.3s ease',
+    transition: 'all 0.2s ease',
     outline: 'none',
+    boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.03)',
   },
   successWrapper: {
     display: 'flex',
@@ -257,26 +292,13 @@ const styles = {
     gap: '1rem',
   },
   successTitle: {
-    fontFamily: "'JetBrains Mono', monospace",
-    fontSize: '1.1rem',
-    color: '#05ffa1',
-    letterSpacing: '0.05em',
+    fontSize: '1.15rem',
+    fontWeight: '800',
+    color: '#059669',
   },
   successText: {
-    color: 'var(--text-secondary)',
+    color: '#475569',
     fontSize: '0.95rem',
     lineHeight: '1.5',
   },
-  hugeFooter: {
-    fontSize: 'clamp(2.2rem, 7vw, 6.5rem)',
-    fontWeight: '900',
-    letterSpacing: '-0.04em',
-    lineHeight: '0.95',
-    textTransform: 'uppercase',
-    marginTop: 'auto',
-    borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-    paddingTop: '3rem',
-  },
 };
-
-
