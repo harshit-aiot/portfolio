@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Send, Github, Linkedin, CheckCircle2, ArrowUpRight } from 'lucide-react';
 
 export default function Contact() {
@@ -58,32 +59,42 @@ export default function Contact() {
           <div style={styles.contactRow}>
             <span style={styles.label}>PROFILES</span>
             <div style={styles.socialGroup}>
-              <a 
+              <motion.a 
                 href="https://github.com/harshit-aiot" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="contact-social-link"
                 style={styles.socialLink}
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Github size={18} /> <span>GitHub (@harshit-aiot)</span>
                 <ArrowUpRight size={14} />
-              </a>
-              <a 
+              </motion.a>
+              <motion.a 
                 href="https://www.linkedin.com/in/harshitbh7/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="contact-social-link"
                 style={styles.socialLink}
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Linkedin size={18} /> <span>LinkedIn (harshitbh7)</span>
                 <ArrowUpRight size={14} />
-              </a>
+              </motion.a>
             </div>
           </div>
         </div>
 
         {/* Custom Form Card */}
-        <div className="glass-card" style={styles.formCard}>
+        <motion.div 
+          className="glass-card" 
+          style={styles.formCard}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        >
           <span style={styles.formTitle}>
             Send a Direct Note
           </span>
@@ -133,12 +144,18 @@ export default function Contact() {
                 />
               </div>
 
-              <button type="submit" className="btn-human-primary" style={{ marginTop: '0.5rem', width: '100%', justifyContent: 'center' }}>
+              <motion.button 
+                type="submit" 
+                className="btn-human-primary" 
+                style={{ marginTop: '0.5rem', width: '100%', justifyContent: 'center' }}
+                whileHover={{ y: -2, scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 Send Message <Send size={16} />
-              </button>
+              </motion.button>
             </form>
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

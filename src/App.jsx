@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Work from './pages/Work';
@@ -39,9 +40,19 @@ function App() {
       {/* Floating Modern Header */}
       <Navbar activePage={activePage} setActivePage={setActivePage} />
 
-      {/* Primary Page Router */}
-      <main style={{ minHeight: 'calc(100vh - 120px)' }}>
-        {renderPage()}
+      {/* Primary Page Router with React Motion Transitions */}
+      <main style={{ minHeight: 'calc(100vh - 120px)', position: 'relative' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activePage}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -14 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {renderPage()}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Clean Luminous Footer */}

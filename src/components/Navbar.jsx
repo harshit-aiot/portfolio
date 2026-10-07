@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar({ activePage, setActivePage }) {
@@ -21,54 +22,90 @@ export default function Navbar({ activePage, setActivePage }) {
     <header style={styles.headerWrapper}>
       <nav style={styles.navBar}>
         {/* Brand / Logo */}
-        <div style={styles.brand} onClick={() => handleNavClick('home')}>
+        <motion.div 
+          style={styles.brand} 
+          onClick={() => handleNavClick('home')}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
           <div style={styles.avatarBadge}>HB</div>
           <div style={styles.brandTextGroup}>
             <span style={styles.brandName}>Harshit Bhargava</span>
             <span style={styles.brandRole}>IoT & Data Analytics</span>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop Nav Links with Sliding Spring Pill */}
         <div style={styles.desktopLinks}>
-          {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => handleNavClick(link.id)}
-              style={activePage === link.id ? styles.linkActive : styles.link}
-            >
-              {link.label}
-              {activePage === link.id && <span style={styles.activeDot}></span>}
-            </button>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activePage === link.id;
+            return (
+              <button
+                key={link.id}
+                onClick={() => handleNavClick(link.id)}
+                style={{
+                  ...styles.link,
+                  color: isActive ? '#4f46e5' : '#475569',
+                  fontWeight: isActive ? '600' : '500',
+                  position: 'relative',
+                }}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeNavTabIndicator"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      borderRadius: '10px',
+                      backgroundColor: '#ffffff',
+                      border: '1px solid rgba(79, 70, 229, 0.2)',
+                      boxShadow: '0 2px 10px rgba(79, 70, 229, 0.12)',
+                      zIndex: 0,
+                    }}
+                    transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+                  />
+                )}
+                <span style={{ position: 'relative', zIndex: 1, display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}>
+                  {link.label}
+                  {isActive && <span style={styles.activeDot}></span>}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Right CTA / Socials */}
         <div style={styles.rightActions}>
-          <a
+          <motion.a
             href="https://github.com/harshit-aiot"
             target="_blank"
             rel="noopener noreferrer"
             style={styles.iconButton}
             title="GitHub"
+            whileHover={{ y: -2, scale: 1.06 }}
+            whileTap={{ scale: 0.95 }}
           >
             <Github size={17} />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="https://www.linkedin.com/in/harshitbh7/"
             target="_blank"
             rel="noopener noreferrer"
             style={styles.iconButton}
             title="LinkedIn"
+            whileHover={{ y: -2, scale: 1.06 }}
+            whileTap={{ scale: 0.95 }}
           >
             <Linkedin size={17} />
-          </a>
-          <button
+          </motion.a>
+          <motion.button
             onClick={() => handleNavClick('contact')}
             style={styles.contactBtn}
+            whileHover={{ y: -2, scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
           >
             Let's Talk <ArrowUpRight size={14} />
-          </button>
+          </motion.button>
         </div>
 
         {/* Mobile Hamburger Button */}

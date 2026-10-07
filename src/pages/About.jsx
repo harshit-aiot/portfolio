@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Award, Briefcase, Calendar, Cpu, GraduationCap, MapPin, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function About() {
@@ -167,14 +168,20 @@ export default function About() {
         </h3>
         <div style={styles.skillsGrid}>
           {skills.map((skillGroup, idx) => (
-            <div key={idx} className="glass-card" style={styles.skillCard}>
+            <motion.div 
+              key={idx} 
+              className="glass-card" 
+              style={styles.skillCard}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.2 }}
+            >
               <h4 style={styles.skillGroupTitle}>{skillGroup.category}</h4>
               <div style={styles.skillTags}>
                 {skillGroup.items.map((item, id) => (
                   <span key={id} style={styles.skillItemTag}>{item}</span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -246,12 +253,18 @@ export default function About() {
         </h3>
         <div style={styles.certsGrid}>
           {certificates.map((cert, idx) => (
-            <div key={idx} className="glass-card" style={styles.certCard}>
+            <motion.div 
+              key={idx} 
+              className="glass-card" 
+              style={styles.certCard}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
+            >
               <span className="telemetry-text" style={{ fontSize: '0.72rem', color: 'var(--accent-green)' }}>
                 {cert.issuer}
               </span>
               <h4 style={styles.certName}>{cert.name}</h4>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

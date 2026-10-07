@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Github, ExternalLink, X, Cpu, BarChart2, Layers, CircuitBoard, Sparkles } from 'lucide-react';
 
 // Real Project Assets directly from Harshit's GitHub Repositories
@@ -300,102 +301,125 @@ export default function Work() {
           Every project featured here was hand-built, coded, and tested by me. Explore actual hardware circuit diagrams, real prototype photos, Power BI dashboards, and live GitHub repositories.
         </p>
 
-        {/* Filter Pills */}
+        {/* Filter Pills with React Motion taps */}
         <div style={styles.filterBar}>
-          <button 
+          <motion.button 
             style={activeFilter === 'all' ? styles.filterBtnActive : styles.filterBtn}
             onClick={() => setActiveFilter('all')}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
             <Layers size={15} /> All Projects ({projects.length})
-          </button>
-          <button 
+          </motion.button>
+          <motion.button 
             style={activeFilter === 'data' ? styles.filterBtnActive : styles.filterBtn}
             onClick={() => setActiveFilter('data')}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
             <BarChart2 size={15} /> Data Analytics & ML ({projects.filter(p => p.category === 'data').length})
-          </button>
-          <button 
+          </motion.button>
+          <motion.button 
             style={activeFilter === 'iot' ? styles.filterBtnActive : styles.filterBtn}
             onClick={() => setActiveFilter('iot')}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
             <Cpu size={15} /> IoT & Hardware Prototypes ({projects.filter(p => p.category === 'iot').length})
-          </button>
+          </motion.button>
         </div>
       </div>
 
-      {/* Grid Layout */}
-      <div className="responsive-project-grid" style={styles.grid}>
-        {filteredProjects.map((project) => (
-          <div 
-            key={project.id} 
-            className="glass-card" 
-            style={styles.card}
-            onClick={() => handleOpenProject(project)}
+      {/* Grid Layout with Framer Motion layout animations */}
+      <motion.div layout className="responsive-project-grid" style={styles.grid}>
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project) => (
+            <motion.div 
+              layout
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.94 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8 }}
+              key={project.id} 
+              className="glass-card" 
+              style={styles.card}
+              onClick={() => handleOpenProject(project)}
+            >
+              <div style={styles.imageContainer}>
+                <img src={project.image} alt={project.title} style={styles.image} />
+                
+                {/* Category pill on image */}
+                <div style={styles.categoryBadge}>
+                  {project.category === 'iot' ? <Cpu size={12} /> : <BarChart2 size={12} />}
+                  <span>{project.badge}</span>
+                </div>
+
+                {/* Hover overlay */}
+                <div style={styles.imageOverlay} className="image-overlay-hover">
+                  <span className="telemetry-text" style={styles.overlayText}>
+                    Inspect Schematic & Data <ArrowUpRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} />
+                  </span>
+                </div>
+              </div>
+
+              <div style={styles.cardContent}>
+                <div style={styles.cardMetaRow}>
+                  <span className="telemetry-text" style={{ fontSize: '0.72rem', letterSpacing: '0.08em' }}>
+                    {project.subtitle}
+                  </span>
+                </div>
+
+                <h3 style={styles.projectTitle}>{project.title}</h3>
+                
+                <p style={styles.cardDesc}>
+                  {project.summary.slice(0, 150)}...
+                </p>
+
+                <div style={styles.techList}>
+                  {project.tech.slice(0, 4).map((t, idx) => (
+                    <span key={idx} style={styles.techTag}>{t}</span>
+                  ))}
+                  {project.tech.length > 4 && (
+                    <span style={{ ...styles.techTag, opacity: 0.7 }}>+{project.tech.length - 4}</span>
+                  )}
+                </div>
+
+                <div style={styles.cardFooter}>
+                  <span style={styles.exploreLink}>
+                    View Specs & Schematics <ArrowUpRight size={14} />
+                  </span>
+                  <span style={styles.githubTag}>
+                    <Github size={14} /> Repo
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
+
+      {/* Detail Modal with React Motion Spring Physics */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="portfolio-modal-overlay" 
+            style={styles.modalOverlay} 
+            onClick={() => setSelectedProject(null)}
           >
-            <div style={styles.imageContainer}>
-              <img src={project.image} alt={project.title} style={styles.image} />
-              
-              {/* Category pill on image */}
-              <div style={styles.categoryBadge}>
-                {project.category === 'iot' ? <Cpu size={12} /> : <BarChart2 size={12} />}
-                <span>{project.badge}</span>
-              </div>
-
-              {/* Hover overlay */}
-              <div style={styles.imageOverlay} className="image-overlay-hover">
-                <span className="telemetry-text" style={styles.overlayText}>
-                  Inspect Schematic & Data <ArrowUpRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} />
-                </span>
-              </div>
-            </div>
-
-            <div style={styles.cardContent}>
-              <div style={styles.cardMetaRow}>
-                <span className="telemetry-text" style={{ fontSize: '0.72rem', letterSpacing: '0.08em' }}>
-                  {project.subtitle}
-                </span>
-              </div>
-
-              <h3 style={styles.projectTitle}>{project.title}</h3>
-              
-              <p style={styles.cardDesc}>
-                {project.summary.slice(0, 150)}...
-              </p>
-
-              <div style={styles.techList}>
-                {project.tech.slice(0, 4).map((t, idx) => (
-                  <span key={idx} style={styles.techTag}>{t}</span>
-                ))}
-                {project.tech.length > 4 && (
-                  <span style={{ ...styles.techTag, opacity: 0.7 }}>+{project.tech.length - 4}</span>
-                )}
-              </div>
-
-              <div style={styles.cardFooter}>
-                <span style={styles.exploreLink}>
-                  View Specs & Schematics <ArrowUpRight size={14} />
-                </span>
-                <span style={styles.githubTag}>
-                  <Github size={14} /> Repo
-                </span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Detail Modal */}
-      {selectedProject && (
-        <div 
-          className="portfolio-modal-overlay" 
-          style={styles.modalOverlay} 
-          onClick={() => setSelectedProject(null)}
-        >
-          <div 
-            className="portfolio-modal-content" 
-            style={styles.modalContent} 
-            onClick={(e) => e.stopPropagation()}
-          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.93, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.93, y: 16 }}
+              transition={{ type: "spring", stiffness: 350, damping: 28 }}
+              className="portfolio-modal-content" 
+              style={styles.modalContent} 
+              onClick={(e) => e.stopPropagation()}
+            >
             <button 
               style={styles.closeBtn} 
               onClick={() => setSelectedProject(null)}
@@ -523,9 +547,10 @@ export default function Work() {
                 )}
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+    </AnimatePresence>
     </div>
   );
 }

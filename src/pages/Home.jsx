@@ -1,10 +1,31 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ArrowUpRight, Cpu, BarChart2, Github, Layers, ChevronRight, GraduationCap } from 'lucide-react';
 
 // Preview image imports
 import churnOverviewImg from '../assets/projects/churn_overview.png';
 import retailPowerbiImg from '../assets/projects/retail_powerbi.jpg';
 import irrigationModelImg from '../assets/projects/irrigation_model.jpg';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.04,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 export default function Home({ setActivePage }) {
   const featured = [
@@ -33,24 +54,29 @@ export default function Home({ setActivePage }) {
 
   return (
     <div className="container page-fade-in" style={styles.pageWrapper}>
-      {/* Hero Section */}
-      <section style={styles.heroSection}>
+      {/* Hero Section with React Motion Stagger */}
+      <motion.section 
+        style={styles.heroSection}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Availability Badge */}
-        <div style={styles.statusPill}>
+        <motion.div variants={itemVariants} style={styles.statusPill}>
           <span style={styles.statusDot}></span>
           <span>Available for Internships & Projects</span>
-        </div>
+        </motion.div>
 
-        {/* Crisp, Static, Beautiful Headline — NO GLITCHING, VIBRANT MULTI-COLOR */}
-        <h1 style={styles.heroTitle}>
+        {/* Crisp Headline */}
+        <motion.h1 variants={itemVariants} style={styles.heroTitle}>
           Hi, I'm <span style={styles.gradientName}>Harshit Bhargava</span>.
-        </h1>
+        </motion.h1>
 
-        <p style={styles.heroSubheading}>
+        <motion.p variants={itemVariants} style={styles.heroSubheading}>
           IoT Developer & Data Analytics Engineer
-        </p>
+        </motion.p>
 
-        <div style={styles.heroBioWrapper}>
+        <motion.div variants={itemVariants} style={styles.heroBioWrapper}>
           <p style={styles.heroLead}>
             Bridging the physical and analytical worlds — designing intelligent IoT hardware and turning complex datasets into clear, high-impact decision systems.
           </p>
@@ -73,61 +99,79 @@ export default function Home({ setActivePage }) {
               <span>Predictive ML & Enterprise BI</span>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Clean Call To Action Buttons */}
-        <div style={styles.ctaGroup}>
-          <button 
+        <motion.div variants={itemVariants} style={styles.ctaGroup}>
+          <motion.button 
             className="btn-human-primary" 
             onClick={() => setActivePage('work')}
+            whileHover={{ y: -2, scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             Explore My Work <ArrowUpRight size={17} />
-          </button>
+          </motion.button>
 
-          <button 
+          <motion.button 
             className="btn-human-secondary" 
             onClick={() => setActivePage('contact')}
+            whileHover={{ y: -2, scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             Get In Touch
-          </button>
+          </motion.button>
 
-          <a 
+          <motion.a 
             href="https://github.com/harshit-aiot" 
             target="_blank" 
             rel="noopener noreferrer" 
             style={styles.ghPill}
+            whileHover={{ y: -2, scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             <Github size={17} />
             <span>github.com/harshit-aiot</span>
-          </a>
-        </div>
-      </section>
+          </motion.a>
+        </motion.div>
+      </motion.section>
 
       {/* Honest, Real Metric Cards */}
       <section style={styles.metricsRow}>
-        <div style={styles.metricCard}>
+        <motion.div 
+          style={styles.metricCard}
+          whileHover={{ y: -6, scale: 1.02 }}
+          transition={{ duration: 0.2 }}
+        >
           <div style={{ ...styles.metricNumber, background: 'linear-gradient(135deg, #4f46e5 0%, #0284c7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             37M+
           </div>
           <div style={styles.metricLabel}>Transaction Records Analyzed</div>
           <p style={styles.metricDesc}>Processed in the Enterprise Retail Platform with 47 custom SQL analytics queries.</p>
-        </div>
+        </motion.div>
 
-        <div style={styles.metricCard}>
+        <motion.div 
+          style={styles.metricCard}
+          whileHover={{ y: -6, scale: 1.02 }}
+          transition={{ duration: 0.2 }}
+        >
           <div style={{ ...styles.metricNumber, background: 'linear-gradient(135deg, #059669 0%, #0d9488 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             100% Real
           </div>
           <div style={styles.metricLabel}>Physical Hardware Prototypes</div>
           <p style={styles.metricDesc}>Built with ESP32, Arduino Uno, ADXL345 accelerometer, and capacitive sensors.</p>
-        </div>
+        </motion.div>
 
-        <div style={styles.metricCard}>
+        <motion.div 
+          style={styles.metricCard}
+          whileHover={{ y: -6, scale: 1.02 }}
+          transition={{ duration: 0.2 }}
+        >
           <div style={{ ...styles.metricNumber, background: 'linear-gradient(135deg, #7c3aed 0%, #db2777 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             BCA (AI & ML)
           </div>
           <div style={styles.metricLabel}>Lovely Professional University</div>
           <p style={styles.metricDesc}>Hands-on engineering focus spanning machine learning, embedded C++, and data analytics.</p>
-        </div>
+        </motion.div>
       </section>
 
       {/* What I Do — Human Three-Column Cards */}
@@ -138,7 +182,11 @@ export default function Home({ setActivePage }) {
         </div>
 
         <div style={styles.pillarsGrid}>
-          <div style={styles.pillarCard}>
+          <motion.div 
+            style={styles.pillarCard}
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.25 }}
+          >
             <div style={{ ...styles.pillarIcon, background: 'rgba(79, 70, 229, 0.1)', color: '#4f46e5' }}>
               <Cpu size={24} />
             </div>
@@ -153,9 +201,13 @@ export default function Home({ setActivePage }) {
               <span style={styles.tagBlue}>ADXL345</span>
               <span style={styles.tagBlue}>ThingSpeak</span>
             </div>
-          </div>
+          </motion.div>
 
-          <div style={styles.pillarCard}>
+          <motion.div 
+            style={styles.pillarCard}
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.25 }}
+          >
             <div style={{ ...styles.pillarIcon, background: 'rgba(16, 185, 129, 0.1)', color: '#059669' }}>
               <BarChart2 size={24} />
             </div>
@@ -170,9 +222,13 @@ export default function Home({ setActivePage }) {
               <span style={styles.tagGreen}>Power BI</span>
               <span style={styles.tagGreen}>Pandas</span>
             </div>
-          </div>
+          </motion.div>
 
-          <div style={styles.pillarCard}>
+          <motion.div 
+            style={styles.pillarCard}
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.25 }}
+          >
             <div style={{ ...styles.pillarIcon, background: 'rgba(124, 58, 237, 0.1)', color: '#7c3aed' }}>
               <Layers size={24} />
             </div>
@@ -187,7 +243,7 @@ export default function Home({ setActivePage }) {
               <span style={styles.tagPurple}>Random Forest</span>
               <span style={styles.tagPurple}>EDA</span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -209,10 +265,12 @@ export default function Home({ setActivePage }) {
 
         <div style={styles.featuredGrid}>
           {featured.map((item, idx) => (
-            <div 
+            <motion.div 
               key={idx} 
               style={styles.featuredCard}
               onClick={() => setActivePage('work')}
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.25 }}
             >
               <div style={styles.featuredImgFrame}>
                 <img src={item.image} alt={item.title} style={styles.featuredImg} />
@@ -227,7 +285,7 @@ export default function Home({ setActivePage }) {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
