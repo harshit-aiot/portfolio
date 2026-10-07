@@ -592,7 +592,7 @@ const styles = {
     color: '#0f172a',
   },
   subtitle: {
-    maxWidth: '750px',
+    maxWidth: '900px',
     color: '#475569',
     fontSize: '1.05rem',
     lineHeight: 1.6,
@@ -634,11 +634,7 @@ const styles = {
     cursor: 'pointer',
     boxShadow: '0 4px 14px rgba(79, 70, 229, 0.28)',
   },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
-    gap: '2rem',
-  },
+  grid: {},
   card: {
     cursor: 'pointer',
     padding: 0,

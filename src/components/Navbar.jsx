@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar({ activePage, setActivePage }) {
@@ -163,27 +163,27 @@ export default function Navbar({ activePage, setActivePage }) {
 const styles = {
   headerWrapper: {
     position: 'fixed',
-    top: '1rem',
+    top: '0.85rem',
     left: 0,
     width: '100%',
     zIndex: 100,
     display: 'flex',
     justifyContent: 'center',
-    padding: '0 1.25rem',
+    padding: '0 clamp(1rem, 3.2vw, 2.5rem)',
     pointerEvents: 'none',
   },
   navBar: {
     pointerEvents: 'auto',
     width: '100%',
-    maxWidth: '1100px',
+    maxWidth: '1380px',
     height: '64px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '0 1.5rem',
-    background: 'rgba(255, 255, 255, 0.8)',
+    padding: '0 clamp(1rem, 2vw, 1.75rem)',
+    background: 'rgba(255, 255, 255, 0.85)',
     backdropFilter: 'blur(20px)',
-    border: '1px solid rgba(255, 255, 255, 0.9)',
+    border: '1px solid rgba(255, 255, 255, 0.95)',
     borderRadius: '18px',
     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02)',
   },
@@ -303,12 +303,12 @@ const styles = {
   },
   mobileDropdown: {
     position: 'absolute',
-    top: '75px',
-    width: 'calc(100% - 2.5rem)',
-    maxWidth: '1100px',
-    background: 'rgba(255, 255, 255, 0.95)',
+    top: '72px',
+    width: 'calc(100% - clamp(2rem, 6.4vw, 5rem))',
+    maxWidth: '1380px',
+    background: 'rgba(255, 255, 255, 0.96)',
     backdropFilter: 'blur(20px)',
-    border: '1px solid rgba(255, 255, 255, 0.9)',
+    border: '1px solid rgba(255, 255, 255, 0.95)',
     borderRadius: '18px',
     padding: '1.25rem',
     display: 'flex',

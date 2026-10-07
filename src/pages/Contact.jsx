@@ -180,18 +180,12 @@ const styles = {
     color: '#0f172a',
   },
   subtitle: {
-    maxWidth: '650px',
+    maxWidth: '850px',
     color: '#475569',
     fontSize: '1.05rem',
     lineHeight: 1.6,
   },
-  contentGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-    gap: '3.5rem',
-    alignItems: 'start',
-    marginBottom: '4rem',
-  },
+  contentGrid: {},
   infoColumn: {
     display: 'flex',
     flexDirection: 'column',

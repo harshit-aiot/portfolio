@@ -322,12 +322,7 @@ const styles = {
     boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
     transition: 'all 0.2s ease',
   },
-  bioLayout: {
-    display: 'grid',
-    gridTemplateColumns: '1.3fr 1fr',
-    gap: '3rem',
-    marginBottom: '4rem',
-  },
+  bioLayout: {},
   bioTextColumn: {
     display: 'flex',
     flexDirection: 'column',
@@ -431,12 +426,7 @@ const styles = {
     padding: '0.3rem 0.65rem',
     borderRadius: '6px',
   },
-  twoColumnSection: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '3.5rem',
-    marginBottom: '4rem',
-  },
+  twoColumnSection: {},
   column: {
     display: 'flex',
     flexDirection: 'column',

@@ -54,89 +54,172 @@ export default function Home({ setActivePage }) {
 
   return (
     <div className="container page-fade-in" style={styles.pageWrapper}>
-      {/* Hero Section with React Motion Stagger */}
+      {/* Hero Section with React Motion Stagger & Responsive Split Layout */}
       <motion.section 
+        className="hero-split-layout"
         style={styles.heroSection}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Availability Badge */}
-        <motion.div variants={itemVariants} style={styles.statusPill}>
-          <span style={styles.statusDot}></span>
-          <span>Available for Internships & Projects</span>
-        </motion.div>
+        {/* Left Column: Hero Bio & Actions */}
+        <div style={styles.heroLeftCol}>
+          {/* Availability Badge */}
+          <motion.div variants={itemVariants} style={styles.statusPill}>
+            <span style={styles.statusDot}></span>
+            <span>Available for Internships & Projects</span>
+          </motion.div>
 
-        {/* Crisp Headline */}
-        <motion.h1 variants={itemVariants} style={styles.heroTitle}>
-          Hi, I'm <span style={styles.gradientName}>Harshit Bhargava</span>.
-        </motion.h1>
+          {/* Crisp Headline */}
+          <motion.h1 variants={itemVariants} style={styles.heroTitle}>
+            Hi, I'm <span style={styles.gradientName}>Harshit Bhargava</span>.
+          </motion.h1>
 
-        <motion.p variants={itemVariants} style={styles.heroSubheading}>
-          IoT Developer & Data Analytics Engineer
-        </motion.p>
+          <motion.p variants={itemVariants} style={styles.heroSubheading}>
+            IoT Developer & Data Analytics Engineer
+          </motion.p>
 
-        <motion.div variants={itemVariants} style={styles.heroBioWrapper}>
-          <p style={styles.heroLead}>
-            Bridging the physical and analytical worlds — designing intelligent IoT hardware and turning complex datasets into clear, high-impact decision systems.
-          </p>
+          <motion.div variants={itemVariants} style={styles.heroBioWrapper}>
+            <p style={styles.heroLead}>
+              Bridging the physical and analytical worlds — designing intelligent IoT hardware and turning complex datasets into clear, high-impact decision systems.
+            </p>
 
-          <p style={styles.heroBio}>
-            Specializing in <strong>AI & Machine Learning</strong> at <strong>Lovely Professional University</strong>, I architect embedded microcontroller systems with <span className="tech-tag tech-hardware">ESP32</span> and <span className="tech-tag tech-hardware">Arduino</span>, alongside end-to-end data analytics and predictive models built with <span className="tech-tag tech-data">Python</span>, <span className="tech-tag tech-data">SQL</span>, and <span className="tech-tag tech-data">Power BI</span>.
-          </p>
+            <p style={styles.heroBio}>
+              Specializing in <strong>AI & Machine Learning</strong> at <strong>Lovely Professional University</strong>, I architect embedded microcontroller systems with <span className="tech-tag tech-hardware">ESP32</span> and <span className="tech-tag tech-hardware">Arduino</span>, alongside end-to-end data analytics and predictive models built with <span className="tech-tag tech-data">Python</span>, <span className="tech-tag tech-data">SQL</span>, and <span className="tech-tag tech-data">Power BI</span>.
+            </p>
 
-          <div style={styles.bioHighlights}>
-            <div style={styles.highlightBadge}>
-              <GraduationCap size={15} style={{ color: '#4f46e5' }} />
-              <span>BCA (AI & ML) · Lovely Professional University</span>
+            <div style={styles.bioHighlights}>
+              <div style={styles.highlightBadge}>
+                <GraduationCap size={15} style={{ color: '#4f46e5' }} />
+                <span>BCA (AI & ML) · Lovely Professional University</span>
+              </div>
+              <div style={styles.highlightBadge}>
+                <Cpu size={15} style={{ color: '#0284c7' }} />
+                <span>Embedded Hardware & Edge Robotics</span>
+              </div>
+              <div style={styles.highlightBadge}>
+                <BarChart2 size={15} style={{ color: '#059669' }} />
+                <span>Predictive ML & Enterprise BI</span>
+              </div>
             </div>
-            <div style={styles.highlightBadge}>
-              <Cpu size={15} style={{ color: '#0284c7' }} />
-              <span>Embedded Hardware & Edge Robotics</span>
+          </motion.div>
+
+          {/* Clean Call To Action Buttons */}
+          <motion.div variants={itemVariants} style={styles.ctaGroup}>
+            <motion.button 
+              className="btn-human-primary" 
+              onClick={() => setActivePage('work')}
+              whileHover={{ y: -2, scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Explore My Work <ArrowUpRight size={17} />
+            </motion.button>
+
+            <motion.button 
+              className="btn-human-secondary" 
+              onClick={() => setActivePage('contact')}
+              whileHover={{ y: -2, scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Get In Touch
+            </motion.button>
+
+            <motion.a 
+              href="https://github.com/harshit-aiot" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={styles.ghPill}
+              whileHover={{ y: -2, scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Github size={17} />
+              <span>github.com/harshit-aiot</span>
+            </motion.a>
+          </motion.div>
+        </div>
+
+        {/* Right Column: Live Engineering Telemetry Showcase Console (fills laptop screen beautifully & eliminates blank gap) */}
+        <motion.div 
+          variants={itemVariants}
+          className="glass-card"
+          style={styles.telemetryCard}
+        >
+          {/* Card Top Header */}
+          <div style={styles.telemetryCardHeader}>
+            <div style={styles.telemetryStatusGroup}>
+              <span className="blink-dot"></span>
+              <span style={styles.telemetryStatusTitle}>SYSTEM ONLINE</span>
             </div>
-            <div style={styles.highlightBadge}>
-              <BarChart2 size={15} style={{ color: '#059669' }} />
-              <span>Predictive ML & Enterprise BI</span>
+            <span style={styles.telemetryStatusSub}>HARSHIT-NODE-01</span>
+          </div>
+
+          {/* Quick Metrics Matrix */}
+          <div style={styles.telemetryMatrix}>
+            <div style={styles.telemetryMatrixCell}>
+              <span style={styles.matrixLabel}>MICROCONTROLLER</span>
+              <span style={styles.matrixVal}>ESP32 + Arduino</span>
+            </div>
+            <div style={styles.telemetryMatrixCell}>
+              <span style={styles.matrixLabel}>ANALYTICS SCALE</span>
+              <span style={styles.matrixVal}>37M+ Transactions</span>
+            </div>
+            <div style={styles.telemetryMatrixCell}>
+              <span style={styles.matrixLabel}>MODEL PIPELINE</span>
+              <span style={styles.matrixVal}>K-Means & Churn ML</span>
+            </div>
+            <div style={styles.telemetryMatrixCell}>
+              <span style={styles.matrixLabel}>EDUCATION FOCUS</span>
+              <span style={styles.matrixVal}>BCA (AI & ML) @ LPU</span>
             </div>
           </div>
-        </motion.div>
 
-        {/* Clean Call To Action Buttons */}
-        <motion.div variants={itemVariants} style={styles.ctaGroup}>
-          <motion.button 
-            className="btn-human-primary" 
-            onClick={() => setActivePage('work')}
-            whileHover={{ y: -2, scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Explore My Work <ArrowUpRight size={17} />
-          </motion.button>
+          {/* Real-Time Telemetry Feed Box */}
+          <div style={styles.telemetryTerminal}>
+            <div style={styles.terminalHeader}>
+              <span style={styles.terminalTitle}>TELEMETRY STREAM</span>
+              <span style={styles.terminalStatus}>10Hz FEED</span>
+            </div>
+            <div style={styles.terminalRow}>
+              <span style={styles.terminalKey}>[HARDWARE]</span>
+              <span style={styles.terminalText}>ESP32 DevKit V1 · Soil Moisture 64% (Normal)</span>
+            </div>
+            <div style={styles.terminalRow}>
+              <span style={styles.terminalKey}>[ROBOTICS]</span>
+              <span style={styles.terminalText}>ADXL345 3-Axis IMU · Roll -1.2° / Pitch +0.4°</span>
+            </div>
+            <div style={styles.terminalRow}>
+              <span style={styles.terminalKey}>[DATABASE]</span>
+              <span style={styles.terminalText}>MySQL 8.4 · 47 Production Queries Indexed</span>
+            </div>
+            <div style={styles.terminalRow}>
+              <span style={styles.terminalKey}>[ML MODEL]</span>
+              <span style={styles.terminalText}>Telco Customer Churn · 84.6% ROC-AUC Score</span>
+            </div>
+          </div>
 
-          <motion.button 
-            className="btn-human-secondary" 
-            onClick={() => setActivePage('contact')}
-            whileHover={{ y: -2, scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Get In Touch
-          </motion.button>
-
-          <motion.a 
-            href="https://github.com/harshit-aiot" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            style={styles.ghPill}
-            whileHover={{ y: -2, scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <Github size={17} />
-            <span>github.com/harshit-aiot</span>
-          </motion.a>
+          {/* Card Bottom CTA */}
+          <div style={styles.telemetryCardBottom}>
+            <button 
+              onClick={() => setActivePage('work')}
+              style={styles.telemetryExploreBtn}
+            >
+              <span>Inspect Circuits & Schematics</span>
+              <ArrowUpRight size={15} />
+            </button>
+            <a 
+              href="https://github.com/harshit-aiot" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={styles.telemetryRepoLink}
+            >
+              <Github size={15} /> All Repos
+            </a>
+          </div>
         </motion.div>
       </motion.section>
 
       {/* Honest, Real Metric Cards */}
-      <section style={styles.metricsRow}>
+      <section className="responsive-metrics-grid" style={styles.metricsRow}>
         <motion.div 
           style={styles.metricCard}
           whileHover={{ y: -6, scale: 1.02 }}
@@ -181,7 +264,7 @@ export default function Home({ setActivePage }) {
           <h2 style={styles.sectionTitle}>What I Focus On</h2>
         </div>
 
-        <div style={styles.pillarsGrid}>
+        <div className="responsive-pillars-grid" style={styles.pillarsGrid}>
           <motion.div 
             style={styles.pillarCard}
             whileHover={{ y: -6 }}
@@ -263,7 +346,7 @@ export default function Home({ setActivePage }) {
           </button>
         </div>
 
-        <div style={styles.featuredGrid}>
+        <div className="responsive-project-grid" style={styles.featuredGrid}>
           {featured.map((item, idx) => (
             <motion.div 
               key={idx} 
@@ -309,8 +392,12 @@ const styles = {
     paddingBottom: '60px',
   },
   heroSection: {
-    maxWidth: '860px',
     marginBottom: '4.5rem',
+  },
+  heroLeftCol: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
   },
   statusPill: {
     display: 'inline-flex',
@@ -324,7 +411,7 @@ const styles = {
     boxShadow: '0 2px 10px rgba(0, 0, 0, 0.04)',
     padding: '0.4rem 0.95rem',
     borderRadius: '20px',
-    marginBottom: '1.5rem',
+    marginBottom: '1.25rem',
   },
   statusDot: {
     width: '8px',
@@ -334,12 +421,12 @@ const styles = {
     boxShadow: '0 0 10px rgba(16, 185, 129, 0.6)',
   },
   heroTitle: {
-    fontSize: 'clamp(2.8rem, 6.5vw, 4.8rem)',
+    fontSize: 'clamp(2.1rem, 5.2vw, 4.2rem)',
     fontWeight: '800',
     letterSpacing: '-0.03em',
-    lineHeight: '1.1',
+    lineHeight: '1.12',
     color: '#0f172a',
-    marginBottom: '1rem',
+    marginBottom: '0.85rem',
   },
   gradientName: {
     background: 'linear-gradient(135deg, #4f46e5 0%, #06b6d4 40%, #e11d48 100%)',
@@ -348,45 +435,45 @@ const styles = {
     display: 'inline-block',
   },
   heroSubheading: {
-    fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)',
+    fontSize: 'clamp(1.15rem, 2.2vw, 1.55rem)',
     fontWeight: '600',
     color: '#4f46e5',
-    marginBottom: '1.5rem',
+    marginBottom: '1.25rem',
     letterSpacing: '-0.01em',
   },
   heroBioWrapper: {
-    maxWidth: '780px',
-    marginBottom: '2.5rem',
+    width: '100%',
+    marginBottom: '2rem',
   },
   heroLead: {
-    fontSize: 'clamp(1.15rem, 2vw, 1.35rem)',
+    fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)',
     fontWeight: '600',
     color: '#1e293b',
     lineHeight: '1.55',
-    marginBottom: '0.9rem',
+    marginBottom: '0.85rem',
     letterSpacing: '-0.01em',
   },
   heroBio: {
-    fontSize: 'clamp(0.98rem, 1.5vw, 1.1rem)',
+    fontSize: 'clamp(0.92rem, 1.4vw, 1.02rem)',
     color: '#475569',
-    lineHeight: '1.7',
-    marginBottom: '1.4rem',
+    lineHeight: '1.65',
+    marginBottom: '1.25rem',
   },
   bioHighlights: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '0.6rem',
+    gap: '0.55rem',
     alignItems: 'center',
   },
   highlightBadge: {
     display: 'inline-flex',
     alignItems: 'center',
     gap: '0.45rem',
-    padding: '0.42rem 0.85rem',
+    padding: '0.4rem 0.8rem',
     borderRadius: '100px',
     background: 'rgba(255, 255, 255, 0.92)',
     border: '1px solid rgba(226, 232, 240, 0.95)',
-    fontSize: '0.82rem',
+    fontSize: '0.8rem',
     fontWeight: '600',
     color: '#334155',
     boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
@@ -394,7 +481,7 @@ const styles = {
   ctaGroup: {
     display: 'flex',
     alignItems: 'center',
-    gap: '1rem',
+    gap: '0.85rem',
     flexWrap: 'wrap',
   },
   ghPill: {
@@ -412,10 +499,152 @@ const styles = {
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
     transition: 'all 0.2s ease',
   },
-  metricsRow: {
+  telemetryCard: {
+    padding: '1.6rem',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.15rem',
+    background: 'rgba(255, 255, 255, 0.88)',
+    border: '1px solid rgba(255, 255, 255, 0.98)',
+    boxShadow: '0 15px 35px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(79, 70, 229, 0.06)',
+  },
+  telemetryCardHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: '0.75rem',
+    borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
+  },
+  telemetryStatusGroup: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.55rem',
+  },
+  telemetryStatusTitle: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '0.78rem',
+    fontWeight: '700',
+    color: '#0f172a',
+    letterSpacing: '0.06em',
+  },
+  telemetryStatusSub: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '0.72rem',
+    color: '#4f46e5',
+    fontWeight: '600',
+    background: 'rgba(79, 70, 229, 0.08)',
+    padding: '0.2rem 0.55rem',
+    borderRadius: '6px',
+  },
+  telemetryMatrix: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '1.5rem',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '0.65rem',
+  },
+  telemetryMatrixCell: {
+    background: '#f8fafc',
+    border: '1px solid #e2e8f0',
+    borderRadius: '12px',
+    padding: '0.7rem 0.85rem',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.2rem',
+  },
+  matrixLabel: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '0.65rem',
+    fontWeight: '700',
+    color: '#64748b',
+    letterSpacing: '0.06em',
+  },
+  matrixVal: {
+    fontSize: '0.85rem',
+    fontWeight: '700',
+    color: '#0f172a',
+  },
+  telemetryTerminal: {
+    background: '#0f172a',
+    borderRadius: '14px',
+    padding: '0.95rem 1.1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.45rem',
+    boxShadow: 'inset 0 2px 6px rgba(0, 0, 0, 0.3)',
+  },
+  terminalHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingBottom: '0.45rem',
+    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+  },
+  terminalTitle: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '0.68rem',
+    color: '#94a3b8',
+    letterSpacing: '0.08em',
+    fontWeight: '600',
+  },
+  terminalStatus: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '0.65rem',
+    color: '#10b981',
+    fontWeight: '700',
+  },
+  terminalRow: {
+    display: 'flex',
+    alignItems: 'baseline',
+    gap: '0.5rem',
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '0.73rem',
+    lineHeight: '1.45',
+  },
+  terminalKey: {
+    color: '#38bdf8',
+    fontWeight: '700',
+    flexShrink: 0,
+  },
+  terminalText: {
+    color: '#e2e8f0',
+  },
+  telemetryCardBottom: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '0.75rem',
+    flexWrap: 'wrap',
+    paddingTop: '0.25rem',
+  },
+  telemetryExploreBtn: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.45rem',
+    background: 'linear-gradient(135deg, #4f46e5 0%, #2563eb 100%)',
+    color: '#ffffff',
+    border: 'none',
+    padding: '0.65rem 1.1rem',
+    borderRadius: '10px',
+    fontWeight: '600',
+    fontSize: '0.82rem',
+    cursor: 'pointer',
+    boxShadow: '0 4px 12px rgba(79, 70, 229, 0.22)',
+    transition: 'all 0.2s ease',
+  },
+  telemetryRepoLink: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.4rem',
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '0.78rem',
+    color: '#475569',
+    padding: '0.55rem 0.85rem',
+    borderRadius: '10px',
+    background: '#f8fafc',
+    border: '1px solid #e2e8f0',
+    fontWeight: '600',
+    transition: 'all 0.2s ease',
+  },
+  metricsRow: {
     marginBottom: '5rem',
   },
   metricCard: {
@@ -467,11 +696,7 @@ const styles = {
     color: '#0f172a',
     letterSpacing: '-0.02em',
   },
-  pillarsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))',
-    gap: '1.5rem',
-  },
+  pillarsGrid: {},
   pillarCard: {
     background: 'rgba(255, 255, 255, 0.82)',
     border: '1px solid rgba(255, 255, 255, 0.95)',
@@ -545,11 +770,7 @@ const styles = {
     flexWrap: 'wrap',
     gap: '1rem',
   },
-  featuredGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))',
-    gap: '1.75rem',
-  },
+  featuredGrid: {},
   featuredCard: {
     background: 'rgba(255, 255, 255, 0.85)',
     border: '1px solid rgba(255, 255, 255, 0.95)',
